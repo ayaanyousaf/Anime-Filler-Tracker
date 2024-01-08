@@ -37,4 +37,4 @@ An application that tracks and displays all filler episodes of an anime series. 
 - requests (making HTTP requests)
 
 ## License 
-This software is licensed under the [MIT License](LICENSE.md).
+This software is licensed under the [MIT License](LICENSE).
