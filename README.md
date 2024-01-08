@@ -2,6 +2,8 @@
 
 An application that tracks and displays all filler episodes of an anime series. Uses web scraping with BeautifulSoup for data collection and customtkinter to implement a simple graphical user intereface (GUI).
 
+![Example 1](screenshots/ex1.png)
+
 ## Installation 
 1. Clone Repository
      ```
