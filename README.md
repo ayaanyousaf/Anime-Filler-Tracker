@@ -17,6 +17,7 @@ An application that tracks and displays all filler episodes of an anime series. 
      pip install requests
      pip install customtkinter
      ```
+
 7. Run application
      ```
      python filler_gui.py
@@ -29,6 +30,16 @@ An application that tracks and displays all filler episodes of an anime series. 
 ## Features
 * Displays all filler episode names and numbers for an anime series
 * Displays the percentage of filler episodes in the anime
+
+## Testing 
+To run tests, ensure you have the pytest framework installed: 
+```
+pip install pytest
+```
+Then type the following command in your terminal: 
+```
+pytest test.py
+```
 
 ## Technologies 
 - Python
