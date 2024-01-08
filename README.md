@@ -5,7 +5,7 @@ An application that tracks and displays all filler episodes of an anime series. 
 ## Installation 
 1. Clone Repository
      ```
-     git clone https://github.com/ayaanyousaf/Anime-Filler-Tracker.git
+     git clone https://github.com/ayaanyousaf/anime-filler-tracker.git
      ```
 3. Change directory
      ```
