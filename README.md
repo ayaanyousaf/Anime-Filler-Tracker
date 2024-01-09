@@ -17,7 +17,7 @@ Anime Filler Tracker is an application designed to streamline the anime-watching
      ```
 3. Change directory
      ```
-     cd Anime-Filler-Tracker
+     cd anime-filler-tracker
      ```
 5. Install dependencies
      ```
