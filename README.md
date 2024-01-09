@@ -2,7 +2,7 @@
 
 An application that tracks and displays all filler episodes of an anime series. Uses web scraping with BeautifulSoup for data collection and customtkinter to implement a simple graphical user interface (GUI).
 
-A filler episode is an episode that contains content not present in the source material, often manga for anime. The episodes are not relevant to the main storyline, but may provide additional backstory or development for certain side characters.
+A filler episode is an episode that contains content not present or canon in the source material, which is often manga for anime. The episodes are not relevant to the main storyline, but may provide additional backstory or development for certain side characters.
 
 <img src="screenshots/ex1.png" alt="Example 1" width="700"/>
 
