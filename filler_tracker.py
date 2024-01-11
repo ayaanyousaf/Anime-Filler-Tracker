@@ -6,7 +6,6 @@ def find_url(anime_name):
     # Make HTTP request to access the web page containing all shows
     response = requests.get("https://www.animefillerlist.com/shows")
 
-    # Check if the request succeeded (status code 200)
     if response.status_code == 200: 
         # Parse through HTML contents of the webpage
         soup = BeautifulSoup(response.text, 'html.parser')
