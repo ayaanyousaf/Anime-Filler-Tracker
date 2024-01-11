@@ -1,54 +1,58 @@
 import requests
 from bs4 import BeautifulSoup
+from fuzzywuzzy import process
 
-def get_filler_episodes(anime_name, anime_url): 
-    """
-       Parse through HTML content of the webpage and find all filler episodes
-       Return all output as a string
-    """
-    # Make HTTP request to access content of Anime Filler List website 
-    response = requests.get(anime_url)
+def find_url(anime_name): 
+    # Make HTTP request to access the web page containing all shows
+    response = requests.get("https://www.animefillerlist.com/shows")
 
     # Check if the request succeeded (status code 200)
+    if response.status_code == 200: 
+        # Parse through HTML contents of the webpage
+        soup = BeautifulSoup(response.text, 'html.parser')
+
+        # Find the <div> containing a list of all shows
+        show_list = soup.find('div', id='ShowList')
+        
+        # Store names of all shows
+        anime_names = []
+        for a in show_list.find_all('a'): 
+            anime_names.append(a.text)
+
+        # Retrieve the closest match and score of similarity 
+        closest, score = process.extractOne(anime_name, anime_names)
+
+        if score >= 80:
+            # Find URL in HTML <a> tag by accessing href attribute
+            show_name_tag = show_list.find('a', string=closest)
+            url = f"https://animefillerlist.com{show_name_tag['href']}"
+            return url, closest
+    return None, None
+
+def get_filler_episodes(anime_name, url): 
+    # Make HTTP request to access content of anime's webpage 
+    response = requests.get(url)
+
     if response.status_code == 200: 
         soup = BeautifulSoup(response.text, 'html.parser')
 
-        filler_ep_links = soup.find_all('tr', class_=['filler odd', 'filler even'])
-        output_str = "" # Output string to return 
+        # Find and store all filler episodes
+        filler_episodes = soup.find_all('tr', class_=['filler odd', 'filler even'])
+        output = "" # Output string to return 
 
-        if len(filler_ep_links) > 0:
-            for link in filler_ep_links: 
-                episode_title = link.find('td', class_='Title').text.strip()
-                episode_number = link.find('td', class_='Number').text.strip()
-                output_str += f'{episode_number} - {episode_title}\n'
+        if len(filler_episodes) > 0:
+            for episode in filler_episodes: 
+                episode_title = episode.find('td', class_='Title').text.strip()
+                episode_number = episode.find('td', class_='Number').text.strip()
+                output += f'{episode_number} - {episode_title}\n'
         else: 
-            output_str += f'{anime_name.upper()} has no filler episodes.'
-    return output_str
+            output += f'{anime_name.upper()} has no filler episodes.'
+    return output
+    
+def get_filler_percentage(anime_name, url):
+    response = requests.get(url) 
 
-def format_name(anime_name): 
-    # Format anime name so it is valid to use in the URL
-    formatted = anime_name.lower().replace('/', '-').replace("'", '').replace(':', '')
-
-    # Store exceptions and shortcuts/abbreviations
-    exceptions = {
-        "attack on titan": "attack-titan",
-        "boruto": "boruto-naruto-next-generations",
-        "berserk": "berserk-2016",
-        "demon slayer": "demon-slayer-kimetsu-no-yaiba",
-        "jojos bizarre adventure": "jojos-bizarre-adventure-tv",
-        "shingeki no kyojin": "attack-titan",
-        "jjk": "jujutsu-kaisen"
-        # Add more exceptions as needed
-    }
-    return exceptions.get(formatted, formatted.replace(' ', '-'))
-
-def get_filler_percentage(anime_name, anime_url):
-    # Make HTTP request to access content of Anime Filler List website 
-    response = requests.get(anime_url) 
-
-    # Check if the request succeeded (status code 200)
     if response.status_code == 200: 
-        # Use BeautifulSoup to parse through HTMl contents of the webpage
         soup = BeautifulSoup(response.text, 'html.parser')
 
         # Find the HTML table representing the list of episodes 
@@ -59,6 +63,6 @@ def get_filler_percentage(anime_name, anime_url):
         filler_episode_count = len(episode_list.find_all('tr', class_=['filler odd', 'filler even']))
 
         # Calculate filler percentage
-        percentage_filler = round(((filler_episode_count / total_episode_count) * 100), 1)
-        
-    return f'\n{percentage_filler}% of {anime_name.upper()} is filler.'
+        percentage = round(((filler_episode_count / total_episode_count) * 100), 1)
+
+    return f'\n{percentage}% of {anime_name} is filler.'
