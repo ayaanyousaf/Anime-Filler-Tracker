@@ -21,7 +21,7 @@ def find_url(anime_name):
         # Retrieve the closest match and score of similarity 
         closest, score = process.extractOne(anime_name, anime_names)
 
-        if score >= 80:
+        if score >= 93:
             # Find URL in HTML <a> tag by accessing href attribute
             show_name_tag = show_list.find('a', string=closest)
             url = f"https://animefillerlist.com{show_name_tag['href']}"

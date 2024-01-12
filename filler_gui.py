@@ -1,7 +1,6 @@
 import customtkinter as ctk 
 from PIL import Image
 from filler_tracker import get_filler_episodes, get_filler_percentage, find_url
-from tkinter import font
 
 def search(): 
     anime_name = entry.get()
@@ -37,12 +36,16 @@ def search():
         
         output_label.configure(text=error, font=('Roboto', 12))
 
+# Function to bind enter key to search button 
+def search_bind(pressed):
+    search()
+
 # Window Setup
 ctk.set_appearance_mode("dark")
 ctk.set_default_color_theme("dark-blue")
 
 root = ctk.CTk()
-root.geometry("800x550")
+root.geometry("800x650")
 root.title("Anime Filler Tracker")
 root.iconbitmap("assets/icon.ico")
 
@@ -58,6 +61,7 @@ logo_label.pack(padx=30)
 # Search Bar
 entry = ctk.CTkEntry(master=frame, placeholder_text="Enter an anime", width=270)
 entry.pack(padx=10)
+entry.bind("<Return>", search_bind) # binds Enter key to search function
 
 # Search Button
 button = ctk.CTkButton(master=frame, 
