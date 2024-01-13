@@ -8,8 +8,7 @@ This application was built using Python. It utilizes BeautifulSoup for web scrap
 
 The website used by this application is [Anime Filler List](https://animefillerlist.com). Please note that only the shows listed on this site will be compatible with the application.
 
-![Project Showcase Gif](/public/anime-filler-tracker.gif)
-
+![Project Showcase Gif](/public/anime_filler_tracker.gif)
 
 ## Installation 
 1. Clone Repository
