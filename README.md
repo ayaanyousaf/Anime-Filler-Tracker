@@ -1,14 +1,15 @@
 # Anime Filler Tracker
 
-An application that tracks and displays all filler episodes of an anime series. Uses web scraping with BeautifulSoup for data collection and customtkinter to implement a simple graphical user interface (GUI).
+Anime Filler Tracker is an application designed to streamline the anime-watching experience for users. It allows users to search for any anime name and be able to view an up to date list of all filler episodes of the series, as well as the percentage of filler episodes in the anime. Users can seemlessly view an entire list of filler episodes and decide which episodes to skip or watch.
 
 A filler episode is an episode that contains content not present or canon in the source material, which is often manga for anime. The episodes are not relevant to the main storyline, but may provide additional backstory or development for certain side characters.
 
-<img src="screenshots/ex1.png" alt="Example 1" width="700"/>
+This application was built using Python. It utilizes BeautifulSoup for web scraping and data collection, as well as CustomTkinter to implement a modern and elegant graphical user interface (GUI).
 
-## Purpose
+The website used by this application is [Anime Filler List](https://animefillerlist.com)
 
-Anime Filler Tracker is an application designed to streamline the anime-watching experience for users. It allows users to search for any anime name and be able to view an up to date list of all filler episodes of the series, as well as the percentage of filler episodes in the anime. Users can seemlessly view an entire list of filler episodes and decide which episodes to skip or watch.
+![Project Showcase Gif](/public/anime-filler-tracker.gif)
+
 
 ## Installation 
 1. Clone Repository
