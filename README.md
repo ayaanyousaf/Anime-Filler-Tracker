@@ -22,11 +22,8 @@ Please note that only the shows listed on this site will be compatible with the 
      ```
 5. Install dependencies
      ```
-     pip install beautifulsoup4
-     pip install requests
-     pip install customtkinter
+     pip install -r requirements.txt
      ```
-
 7. Run application
      ```
      python filler_gui.py
@@ -61,7 +58,7 @@ pytest test.py
 - customtkinter (designing GUI)
 - requests (making HTTP requests)
 - fuzzywuzzy (fuzzy search functionality)
-- PIL (image loading) 
+- Pillow (image loading) 
 
 ## License 
 This software is licensed under the [MIT License](LICENSE).
