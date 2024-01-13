@@ -6,7 +6,7 @@ A filler episode is an episode that contains content not present or canon in the
 
 This application was built using Python. It utilizes BeautifulSoup for web scraping and data collection, as well as CustomTkinter to implement a modern and elegant graphical user interface (GUI).
 
-The website used by this application is [Anime Filler List](https://animefillerlist.com)
+The website used by this application is [Anime Filler List](https://animefillerlist.com). Please note that only the shows listed on this site will be compatible with the application.
 
 ![Project Showcase Gif](/public/anime-filler-tracker.gif)
 
@@ -33,26 +33,15 @@ The website used by this application is [Anime Filler List](https://animefillerl
      ```
 
 ## Usage 
-1. Enter a valid name of an anime series in the search bar and click the search button to view results
-<div style="display: flex; justify-content: space-between;">
-  <img src="screenshots/ex2.png" alt="Search and Results" width="500"/>
-  <img src="screenshots/ex3.png" alt="Scrolled View" width="500"/>
-</div>
-<hr>
-
+1. Enter the name of an anime series in the search bar and click the search button to view results
 2. Example output shows the case where an anime series has <b>no filler episodes</b>
-
-   <img src="screenshots/ex5.png" alt="No Filler Episodes" width="550"/>
-<hr>
-
 3. Displays an error if the HTTP request fails, indicating the <b>show could not be found</b>
 
-   <img src="screenshots/ex4.png" alt="Show Not Found" width="550"/>
-<hr>
-
 ## Features
-* Displays all filler episode names and numbers for an anime series
-* Displays the percentage of filler episodes in the anime
+- **Searching:** Enter an anime series and quickly view all filler episode names and numbers.
+- **Fuzzy Search:** Users have more freedom while searching and can make typos.
+- **Filler Percentage:** Users can view the percentage of filler episodes in the anime.
+- **Clear Button:** Can clear text in the search bar and all previous output with the click of a button.
 
 ## Testing 
 To run tests, ensure you have the pytest framework installed: 
@@ -66,9 +55,11 @@ pytest test.py
 
 ## Technologies 
 - Python
-- BeautifulSoup (for web scraping animefillerlist.com)
+- BeautifulSoup (web scraping)
 - customtkinter (designing GUI)
 - requests (making HTTP requests)
+- fuzzywuzzy (fuzzy search functionality)
+- PIL (image loading) 
 
 ## License 
 This software is licensed under the [MIT License](LICENSE).
