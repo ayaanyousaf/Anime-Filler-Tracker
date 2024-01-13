@@ -4,7 +4,7 @@ from fuzzywuzzy import process
 
 def find_url(anime_name): 
     # Make HTTP request to access the web page containing all shows
-    response = requests.get("https://www.animefillerlist.com/shows")
+    response = requests.get('https://www.animefillerlist.com/shows')
 
     if response.status_code == 200: 
         # Parse through HTML contents of the webpage
@@ -21,7 +21,7 @@ def find_url(anime_name):
         # Retrieve the closest match and score of similarity 
         closest, score = process.extractOne(anime_name, anime_names)
 
-        if score >= 93:
+        if score >= 90:
             # Find URL in HTML <a> tag by accessing href attribute
             show_name_tag = show_list.find('a', string=closest)
             url = f"https://animefillerlist.com{show_name_tag['href']}"

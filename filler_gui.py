@@ -4,10 +4,13 @@ from filler_tracker import get_filler_episodes, get_filler_percentage, find_url
 
 def search(): 
     anime_name = entry.get()
+    
+    if anime_name == "":
+        return
 
     # Clear previous results
-    heading_label.configure(text='')
-    output_label.configure(text='')
+    heading_label.configure(text="")
+    output_label.configure(text="")
 
     try: 
         url, matched_name = find_url(anime_name)
@@ -16,12 +19,12 @@ def search():
 
         # Configure heading and output labels
         heading_label.configure(text=f"All Filler Episodes for: {matched_name}", 
-                    font=ctk.CTkFont(family='Viner Hand ITC', weight='bold', size=20))
+                    font=ctk.CTkFont(family="Viner Hand ITC", weight="bold", size=20))
         output_label.configure(text=f"{episodes}\n{percentage}",
-                    font=ctk.CTkFont(family='Roboto', weight='bold', slant='italic', size=14))
+                    font=ctk.CTkFont(family="Roboto", weight="bold", slant="italic", size=14))
 
     except Exception as e: 
-        heading_label.configure(text="ERROR", font=('Roboto', 14))
+        heading_label.configure(text="ERROR", font=("Roboto", 14))
 
         print(str(e))
         
@@ -34,7 +37,12 @@ def search():
         else: 
             error = "Unknown Error"
         
-        output_label.configure(text=error, font=('Roboto', 12))
+        output_label.configure(text=error, font=("Roboto", 12))
+
+def clear():
+    entry.delete(0, ctk.END) # clear search bar text
+    heading_label.configure(text="")
+    output_label.configure(text="")
 
 # Function to bind enter key to search button 
 def search_bind(pressed):
@@ -50,28 +58,40 @@ root.title("Anime Filler Tracker")
 root.iconbitmap("assets/icon.ico")
 
 # Scrollable Frame
-frame = ctk.CTkScrollableFrame(master=root, scrollbar_button_color='white', scrollbar_button_hover_color='grey')
+frame = ctk.CTkScrollableFrame(master=root, scrollbar_button_color="white", scrollbar_button_hover_color="grey")
 frame.pack(padx=(10, 10), pady=(15, 15), fill="both", expand=True)
 
 # Logo
-logo_img = ctk.CTkImage(dark_image=Image.open('assets/logo.png'), size=(300, 300))
+logo_img = ctk.CTkImage(dark_image=Image.open("assets/logo.png"), size=(300, 300))
 logo_label = ctk.CTkLabel(master=frame, text="", image=logo_img)
 logo_label.pack(padx=30)
 
 # Search Bar
-entry = ctk.CTkEntry(master=frame, placeholder_text="Enter an anime", width=270)
-entry.pack(padx=10)
+entry = ctk.CTkEntry(master=frame, placeholder_text="Enter an anime", width=340, corner_radius=20)
+entry.pack()
 entry.bind("<Return>", search_bind) # binds Enter key to search function
 
 # Search Button
-button = ctk.CTkButton(master=frame, 
+search_button = ctk.CTkButton(master=frame, 
                     text="Search", 
-                    font=('Roboto', 14), 
+                    font=("Roboto", 14), 
                     command=search,
-                    fg_color='white', 
-                    text_color='black', 
-                    hover_color='grey')
-button.pack(padx=10, pady=10)
+                    fg_color="white", 
+                    text_color="black", 
+                    hover_color="grey",
+                    corner_radius=20)
+search_button.place(x=234, y=345)
+
+# Clear Button
+clear_button = ctk.CTkButton(master=frame,
+                    text="Clear",
+                    font=("Roboto", 14),
+                    command=clear,
+                    fg_color="white",
+                    text_color="black",
+                    hover_color="grey",
+                    corner_radius=20)
+clear_button.place(x=382, y=345)
 
 # Output Labels
 heading_label = ctk.CTkLabel(master=frame, 
@@ -79,7 +99,7 @@ heading_label = ctk.CTkLabel(master=frame,
                     anchor="center", 
                     justify="center", 
                     wraplength=600)
-heading_label.pack(padx=6, pady=10)
+heading_label.pack(padx=6, pady=(75, 8))
 
 output_label = ctk.CTkLabel(master=frame, 
                     text="", 
