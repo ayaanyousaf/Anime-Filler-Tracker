@@ -6,7 +6,7 @@ A filler episode is an episode that contains content not present or canon in the
 
 This application was built using Python. It utilizes BeautifulSoup for web scraping and data collection, as well as CustomTkinter to implement a modern and elegant graphical user interface (GUI).
 
-**The website used by this application is [Anime Filler List](https://animefillerlist.com). 
+**The website used by this application is [Anime Filler List](https://animefillerlist.com). <br>
 Please note that only the shows listed on this site will be compatible with the application.**
 
 ![Project Showcase Gif](/public/anime_filler_tracker.gif)
