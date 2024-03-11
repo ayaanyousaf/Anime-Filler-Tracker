@@ -16,15 +16,15 @@ Please note that only the shows listed on this site will be compatible with the 
      ```
      git clone https://github.com/ayaanyousaf/anime-filler-tracker.git
      ```
-3. Change directory
+2. Change directory
      ```
      cd anime-filler-tracker
      ```
-5. Install dependencies
+3. Install dependencies
      ```
      pip install -r requirements.txt
      ```
-7. Run application
+4. Run application
      ```
      python filler_gui.py
      ```
